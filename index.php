@@ -1,4 +1,36 @@
-<?
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+   
+<!-- # Copyright 2010 RightScale, Inc. All rights reserved.  -->
+
+   
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>RightScale Unified Test App</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />  
+</head>
+
+<body>
+
+<div id="header">
+<div id="logo"><img src="images/logo.png" /></div>
+</div>
+
+<div class="code_container">
+<div class="code">
+
+<H1>Exec Test</H1>
+<?php
+$output = shell_exec('hostname');
+echo "<H2>$output</H2>";
+?>
+
+<H1>haproxy-status</H1>
+<h2><a href="/haproxy-status">HAproxy Status</a></h2>
+
+<H1>Database Connection Test</H1>
+
+<?php
 
 include 'config/db.php';
 
@@ -27,4 +59,11 @@ $i++;
 
 echo "<b><center> Starting PHPINFO:</center> </b><hr>";
 phpinfo();
+
 ?>
+
+</div>
+</div>
+
+</body>
+</html>

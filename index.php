@@ -19,6 +19,7 @@
 <div class="code_container">
 <div class="code">
 
+<center>
 <H1>Exec Test</H1>
 <?php
 $output = shell_exec('hostname');
@@ -27,41 +28,64 @@ echo "<H2>$output</H2>";
 
 <H1>haproxy-status</H1>
 <h2><a href="/haproxy-status">HAproxy Status</a></h2>
-
 <H1>Database Connection Test</H1>
 
 <?php
-
 include 'config/db.php';
+$dbhandle = mysql_connect($hostname_DB, $username_DB, $password_DB);
+if (!$dbhandle)
+  {
+  die('Could not connect: ' . mysql_error());
+  }
+mysql_select_db($database_DB, $dbhandle);
 
-mysql_connect($hostname_DB,$username_DB,$password_DB);
-@mysql_select_db($database_DB) or die( "Unable to select database");
-$query="SELECT * FROM phptest";
-$result=mysql_query($query);
-
-$num=mysql_numrows($result);
-
-mysql_close();
-
-echo "<b><center> Database($database_DB) Output From Host($hostname_DB)</center></b><br><br>";
-
-$i=0;
-while ($i < $num) {
-
-$name=mysql_result($result,$i,0);
-$value=mysql_result($result,$i,1);
-
-
-echo "<b><center>$name:$value</center></b><br><hr><br>";
-
-$i++;
-}
-
-echo "<b><center> Starting PHPINFO:</center> </b><hr>";
-phpinfo();
-
+$result = mysql_query("SELECT * FROM phptest");
 ?>
 
+<table border='1'>
+<tr>
+<th>ID</th>
+<th>Firstname</th>
+<th>Lastname</th>
+</tr>
+
+<?
+while($row = mysql_fetch_array($result))
+  {
+  echo "<tr>";
+  echo "<td>" . $row['id'] . "</td>";
+  echo "<td>" . $row['firstname'] . "</td>";
+  echo "<td>" . $row['lastname'] . "</td>";
+  echo "</tr>";
+  }
+
+echo "</table><br/>";
+
+mysql_close($dbhandle);?>
+
+<form action="insert.php" method="post" style="width:440px;">
+<fieldset>
+<legend>Add a Record</legend>
+ID: <input type="text" name="id"><br>
+Firstname: <input type="text" name="firstname"><br>
+Lastname: <input type="text" name="lastname"><br>
+<input type="Submit">
+</fieldset>
+</form><br/>
+
+
+<form action="delete.php" method="post" style="width:440px;">
+<fieldset>
+<legend>Remove a Record</legend>
+ID: <input type="text" name="id"><br><input type="Submit">
+</fieldset>
+</form>
+<br>
+<?php
+echo "<b><center> Starting PHPINFO:</center> </b><hr>";
+phpinfo();
+?>
+</center>
 </div>
 </div>
 

@@ -32,6 +32,8 @@ echo "<H2>$output</H2>";
 
 <?php
 include 'config/db.php';
+$table = 'phptest';
+
 $dbhandle = mysql_connect($hostname_DB, $username_DB, $password_DB);
 if (!$dbhandle)
   {
@@ -39,7 +41,7 @@ if (!$dbhandle)
   }
 mysql_select_db($database_DB, $dbhandle);
 
-$result = mysql_query("SELECT * FROM phptest");
+$result = mysql_query("SELECT * FROM $table");
 ?>
 
 <table border='1'>

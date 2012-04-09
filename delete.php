@@ -21,6 +21,8 @@
 <center>
 <?php
 include 'config/db.php';
+$table = 'phptest';
+
 $dbhandle = mysql_connect($hostname_DB, $username_DB, $password_DB);
 if (!$dbhandle)
   {
@@ -28,7 +30,7 @@ if (!$dbhandle)
   }
 mysql_select_db($database_DB, $dbhandle);
 
-$sql="DELETE FROM phptest WHERE id = ('$_POST[id]')";
+$sql="DELETE FROM $table WHERE id = ('$_POST[id]')";
 
 if (!mysql_query($sql,$dbhandle))
   {

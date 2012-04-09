@@ -6,7 +6,7 @@
    
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-    <title>Update function</title>
+    <title>Insert function</title>
     <link rel="stylesheet" type="text/css" href="style.css" />  
 </head>
 
@@ -22,6 +22,8 @@
 <center>
 <?php
 include 'config/db.php';
+$table = 'phptest';
+
 $dbhandle = mysql_connect($hostname_DB, $username_DB, $password_DB);
 if (!$dbhandle)
   {
@@ -29,7 +31,7 @@ if (!$dbhandle)
   }
 mysql_select_db($database_DB, $dbhandle);
 
-$sql="INSERT INTO phptest (id, firstname, lastname)
+$sql="INSERT INTO $table (id, firstname, lastname)
 VALUES
 ('$_POST[id]','$_POST[firstname]','$_POST[lastname]')";
 

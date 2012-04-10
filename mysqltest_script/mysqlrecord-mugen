@@ -1,0 +1,21 @@
+#!/bin/bash -ex
+
+DATABASE=my_db_schema
+TABLE=phptest
+#COUNTUNIT=10
+COUNTUNIT=$1
+
+#CURRENT_COUNT=`echo "select count(*) from $TABLE;" | mysql $DATABASE |tail -1`
+CURRENT_COUNT=`echo "select id  from $TABLE order by id desc limit 1;" | mysql $DATABASE | tail -1`
+COUNT=`expr $CURRENT_COUNT + 1`
+END_COUNT=`expr $COUNT + $COUNTUNIT`
+
+while [ 0 ];
+do
+#  echo $COUNT
+ID=$COUNT
+TIME=`LC_ALL=ja_JP.UTF8 date`
+echo "INSERT INTO \`$TABLE\` VALUES ($ID,'Test$ID','$TIME');" | mysql $DATABASE
+COUNT=`expr $COUNT + 1`
+done
+echo "select count(*) from $TABLE;" | mysql $DATABASE

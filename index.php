@@ -41,9 +41,13 @@ if (!$dbhandle)
   }
 mysql_select_db($database_DB, $dbhandle);
 
-$result = mysql_query("SELECT * FROM $table");
-?>
+$result = mysql_query("SELECT * FROM $table order by id desc limit 4");
+$result2 = mysql_query("SELECT * FROM $table");
+$num = mysql_numrows($result2);
 
+
+echo "<p style=\"text-align:center\">total record: $num.</p>";
+?>
 <table border='1'>
 <tr>
 <th>ID</th>

@@ -28,6 +28,8 @@ echo "<H2>$output</H2>";
 
 <H1>haproxy-status</H1>
 <h2><a href="/haproxy-status">HAproxy Status</a></h2>
+<H1>Image Upload test</H1>
+<h2><a href="/image.php">Image upload</a></h2>
 <H1>Database Connection Test</H1>
 
 <?php

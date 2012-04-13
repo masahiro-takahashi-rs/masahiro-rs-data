@@ -195,7 +195,7 @@ else
 <label for="photo">Photo:</label><br>
 <input type="file" name="photo" id="photo"><br><br>
 
-<label for="password">Password:</label><br>
+<label for="password">Password(123):</label><br>
 <input type="password" name="password" id="password"><br><br>
 
 <input type="submit" value="upload">
